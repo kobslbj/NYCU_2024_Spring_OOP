@@ -6,51 +6,59 @@
 using namespace std;
 
 int main() {
-    string filename;
-    cout << "Enter the filename: ";
-    cin >> filename;
+    string inputFilename, outputFilename;
+    cout << "Please Enter the filename: ";
+    cin >> inputFilename;
 
-    ifstream inFile(filename);
+    ifstream inFile(inputFilename);
     if (!inFile) {
-        cout << "Error: Cannot open file." << endl;
-        return 1;
+    cout << "File '" << inputFilename << "' does not exist." << endl;
+    return 1;
     }
 
+    cout << "Please enter the output filename: ";
+    cin >> outputFilename;
+
     string word;
-    int wordCount = 0;
-    int charCount = 0;
-    int nonSpaceCharCount = 0;
+    int wordCount = 0; 
+    int charCount = 0; 
+    int nonSpaceCharCount = 0; 
     int letterCount = 0;
 
+   
     while (inFile >> word) {
-        wordCount++;
+        wordCount++; 
         for (char &c : word) {
             if (isalpha(c)) letterCount++;
             nonSpaceCharCount++;
         }
     }
 
-    inFile.clear(); // Clear EOF flag
-    inFile.seekg(0, ios::beg); // Move to the beginning of the file
+    inFile.clear(); 
+    inFile.seekg(0, ios::beg); 
 
     char c;
+    
     while (inFile.get(c)) {
-        charCount++;
-        if (isspace(c) && c != ' ') nonSpaceCharCount++; // Counting '\n' as non-space character
+        charCount++; 
     }
-
     cout << "Word count: " << wordCount << endl;
     cout << "Total number of characters: " << charCount << endl;
     cout << "Total number of non-whitespace characters: " << nonSpaceCharCount << endl;
     cout << "Total number of letters: " << letterCount << endl;
+    
+    ofstream outFile(outputFilename);
+    if (!outFile) {
+        cout << "Cannot create output file." << endl;
+        return 2;
+    }
 
-    ofstream outFile("output.txt");
     outFile << "Word count: " << wordCount << endl;
     outFile << "Total number of characters: " << charCount << endl;
     outFile << "Total number of non-whitespace characters: " << nonSpaceCharCount << endl;
     outFile << "Total number of letters: " << letterCount << endl;
 
-    inFile.close();
+    inFile.close(); 
     outFile.close();
 
     return 0;
