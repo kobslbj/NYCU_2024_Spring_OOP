@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
     string inputFilename, outputFilename;
-    cout << "Please Enter the filename: ";
+    cout << "Please enter the filename: ";
     cin >> inputFilename;
 
     ifstream inFile(inputFilename);
@@ -42,10 +42,10 @@ int main() {
     while (inFile.get(c)) {
         charCount++; 
     }
-    cout << "Word count: " << wordCount << endl;
+    cout << "Total number of words: " << wordCount << endl;
     cout << "Total number of characters: " << charCount << endl;
     cout << "Total number of non-whitespace characters: " << nonSpaceCharCount << endl;
-    cout << "Total number of letters: " << letterCount << endl;
+    cout << "Total number of letters: " << letterCount << endl << endl;
     
     ofstream outFile(outputFilename);
     if (!outFile) {
@@ -53,7 +53,7 @@ int main() {
         return 2;
     }
 
-    outFile << "Word count: " << wordCount << endl;
+    outFile << "Total number of words: " << wordCount << endl;
     outFile << "Total number of characters: " << charCount << endl;
     outFile << "Total number of non-whitespace characters: " << nonSpaceCharCount << endl;
     outFile << "Total number of letters: " << letterCount << endl;
@@ -63,3 +63,4 @@ int main() {
 
     return 0;
 }
+

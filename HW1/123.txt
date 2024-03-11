@@ -1,0 +1,4 @@
+Word count: 16
+Total number of characters: 108
+Total number of non-whitespace characters: 89
+Total number of letters: 79
